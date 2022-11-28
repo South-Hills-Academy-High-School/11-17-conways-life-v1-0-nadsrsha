@@ -34,6 +34,17 @@ function copyBottom () {
 function copyRight (whichRow: number) {
     return grid[whichRow][15]
 }
+function countNeighborWrapleft (currentRow: number, currentCol: number) {
+    neighborCount = 0
+    neighborCount += copyRight(currentRow - 1)
+    neighborCount += grid[currentRow - 1][currentCol + 0]
+    neighborCount += grid[currentRow - 1][currentCol + 1]
+    neighborCount += grid[currentRow - 0][currentCol + 1]
+    neighborCount += grid[currentRow - 1][currentCol + 1]
+    neighborCount += grid[currentRow - 1][currentCol + 0]
+    neighborCount += copyRight(currentRow + 1)
+    neighborCount += copyRight(currentRow + 0)
+}
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     cursorGridCol += 1
     cursorX += 10
@@ -102,6 +113,11 @@ function countNeighborsTopLeft () {
     neighborCount += copyBottom()[0]
     neighborCount += copyBottom()[1]
     return neighborCount
+}
+function countNeighborsWrapRight (current_row: any[], currentCol: any[]) {
+    let currentRow = 0
+    neighborCount = 0
+    neighborCount += copyLeft(currentRow - 1)
 }
 function countNeighborsBottomRight () {
     neighborCount = 0
